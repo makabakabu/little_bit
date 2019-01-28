@@ -15,7 +15,7 @@ const chuck = (array: any[], split: number | number[]) => {
       )[0];
 
     case 'array':
-      // 如果是array 必须要全部加起来等于array的长度
+      // 如果是array 必须要全部加起来等于array的长度 ha
       if ((split as number[]).reduce((value1, value2) => value1 + value2) !== array.length) {
         console.log('array length need to be equals to split sum');
       } else {
