@@ -1,5 +1,5 @@
-import typeOf from '../index';
+import { typeOf } from '../index';
 
 test('typOf', () => {
-  expect(typeOf('string')).toBe('string');
+    expect(typeOf('string')).toBe('string');
 });

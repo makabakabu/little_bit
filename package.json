@@ -1,43 +1,46 @@
 {
-  "name": "little_bit",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "files": [
-    "lib/**/*"
-  ],
-  "scripts": {
-    "test": "jest --config jestconfig.json",
-    "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/martinfengshenxiang/littleBit.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/martinfengshenxiang/littleBit/issues"
-  },
-  "homepage": "https://github.com/martinfengshenxiang/littleBit#readme",
-  "devDependencies": {
-    "@types/jest": "^23.3.13",
-    "jest": "^24.0.0",
-    "prettier": "^1.16.1",
-    "ts-jest": "^23.10.5",
-    "tslint": "^5.12.1",
-    "tslint-config-prettier": "^1.17.0",
-    "typescript": "^3.2.4"
-  },
-  "dependencies": {
-    "babel-preset-react-app": "^7.0.0"
-  }
+    "name": "little_bit",
+    "version": "1.0.3",
+    "description": "",
+    "main": "index.js",
+    "files": [
+        "lib/**/*"
+    ],
+    "scripts": {
+        "test": "jest --config jestconfig.json",
+        "build": "tsc && babel lib -d lib",
+        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+        "lint": "tslint -p tsconfig.json",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm test && npm run lint",
+        "preversion": "npm run lint",
+        "version": "npm run format && git add -A src",
+        "postversion": "git push && git push --tags"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/martinfengshenxiang/littleBit.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/martinfengshenxiang/littleBit/issues"
+    },
+    "homepage": "https://github.com/martinfengshenxiang/littleBit#readme",
+    "devDependencies": {
+        "@babel/cli": "^7.2.3",
+        "@babel/core": "^7.2.2",
+        "@babel/preset-env": "^7.3.1",
+        "@types/jest": "^23.3.13",
+        "jest": "^24.0.0",
+        "prettier": "^1.16.1",
+        "ts-jest": "^23.10.5",
+        "tslint": "^5.12.1",
+        "tslint-config-prettier": "^1.17.0",
+        "typescript": "^3.2.4"
+    },
+    "dependencies": {
+        "babel-preset-react-app": "^7.0.0"
+    }
 }
