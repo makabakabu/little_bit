@@ -15,7 +15,8 @@
         "prepublishOnly": "npm test && npm run lint",
         "preversion": "npm run lint",
         "version": "npm run format && git add -A src",
-        "postversion": "git push && git push --tags"
+        "postversion": "git push && git push --tags",
+        "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
     },
     "repository": {
         "type": "git",
@@ -33,6 +34,7 @@
         "@babel/core": "^7.2.2",
         "@babel/preset-env": "^7.3.1",
         "@types/jest": "^23.3.13",
+        "coveralls": "^3.0.2",
         "jest": "^24.0.0",
         "prettier": "^1.16.1",
         "ts-jest": "^23.10.5",
