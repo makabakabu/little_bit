@@ -15,8 +15,7 @@
         "prepublishOnly": "npm test && npm run lint",
         "preversion": "npm run lint",
         "version": "npm run format && git add -A src",
-        "postversion": "git push && git push --tags",
-        "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
+        "postversion": "git push && git push --tags"
     },
     "repository": {
         "type": "git",
