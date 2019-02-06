@@ -1,6 +1,6 @@
 {
     "name": "little_bit",
-    "version": "1.0.4",
+    "version": "1.0.6",
     "description": "",
     "main": "lib/index.js",
     "files": [
@@ -33,15 +33,16 @@
         "@babel/core": "^7.2.2",
         "@babel/preset-env": "^7.3.1",
         "@types/jest": "^23.3.13",
-        "coveralls": "^3.0.2",
         "jest": "^24.0.0",
         "prettier": "^1.16.1",
         "ts-jest": "^23.10.5",
+        "ts-node": "^8.0.2",
         "tslint": "^5.12.1",
         "tslint-config-prettier": "^1.17.0",
         "typescript": "^3.2.4"
     },
     "dependencies": {
-        "babel-preset-react-app": "^7.0.0"
+        "babel-preset-react-app": "^7.0.0",
+        "fetch": "^1.1.0"
     }
 }
