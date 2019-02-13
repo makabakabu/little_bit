@@ -172,19 +172,13 @@ const chuck = (array: any[], split: number | number[]) => {
 };
 
 const mixture = (list1: any[], list2: any[]) =>
-  list1.length > list2.length
-    ? range(list2.length)
-        .reduce(
-          (tempList: any[]) => [...tempList, list1.shift(), list2.shift()],
-          []
-        )
-        .concat(list1)
-    : range(list1.length)
-        .reduce(
-          (tempList: any[]) => [...tempList, list1.shift(), list2.shift()],
-          []
-        )
-        .concat(list2);
+    list1.length > list2.length
+        ? range(list2.length)
+              .reduce((tempList: any[]) => [...tempList, list1.shift(), list2.shift()], [])
+              .concat(list1)
+        : range(list1.length)
+              .reduce((tempList: any[]) => [...tempList, list1.shift(), list2.shift()], [])
+              .concat(list2);
 
 const clear = (obj: any, exceptValueArray: any[] = []): any => {
     // clear all the false value, false, null, 0, "", undefined, NAN...
@@ -269,4 +263,4 @@ const unique = (array: any[]) => {
     return new Array(new Set(array));
 };
 
-export { fill, range, groupBy, sample, shuffle, chuck, clear, drop, pick, flatten, intersection, Xor, unique };
+export { fill, range, groupBy, sample, shuffle, chuck, clear, drop, pick, flatten, intersection, Xor, unique, mixture };
