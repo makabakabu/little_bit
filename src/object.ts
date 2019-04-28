@@ -52,7 +52,7 @@ const map = (obj: any, func: (value: any, key?: any) => any) => {
     }
 };
 
-map({ 1: [1], 2: [2], 3: [3] }, (value, key) => value); /*?*/
+// map({ 1: [1], 2: [2], 3: [3] }, (value, key) => value); /*?*/
 
 const reduce = (obj: any, func: (tempResult: any, value: any, key?: any) => any, initialResult?: any) => {
     switch (typeOf(obj)) {
@@ -121,8 +121,8 @@ const convertPath2List = (path?: P | P[]) => {
     }
 };
 
-const get = (path: P | P[], object: any) => {
-    path = convertPath2List(path); /*?*/
+const get = (path: P | P[], object: any, replacement?: any) => {
+    path = convertPath2List(path);
     return path.reduce((certainList: any, certainPath: string | number) => {
         if (
             (typeOf(certainPath) === 'number' && certainPath >= 0 && certainPath < certainList.length) ||
@@ -130,10 +130,17 @@ const get = (path: P | P[], object: any) => {
         ) {
             return certainList[certainPath];
         } else {
-            throw new Error("don't have the key");
+            console.log("don't have the key")
+            return replacement || undefined;
         }
     }, object);
 };
+
+const fill = (array: any[], length: number, defaultValue?: any) =>
+    array.length < length
+        ? [...array /*?.*/, ...Array.from(Array(length - array.length).keys()).map(() => defaultValue)]
+        : array.slice(0, length);
+
 const set = (path: P | P[], value: any, object: any): any => {
     path = convertPath2List(path);
     switch (path.length) {
@@ -142,7 +149,10 @@ const set = (path: P | P[], value: any, object: any): any => {
 
         case 1: {
             const [lastPath] = path;
-            return typeOf(object) === 'array'
+            if (typeOf(lastPath) === "number" && (typeOf(object) === 'array' && lastPath >= object.length || object === undefined)) {
+                object = fill([...(object === undefined ? [] : object)], lastPath as number + 1, undefined); 
+            }
+            return typeOf(lastPath) === 'number'
                 ? [...object.slice(0, lastPath), value, ...object.slice((lastPath as number) + 1)]
                 : {
                       ...object,
@@ -152,6 +162,9 @@ const set = (path: P | P[], value: any, object: any): any => {
 
         default: {
             const [firstPath, ...otherPath] = path;
+            if (typeOf(firstPath) === "number" && (typeOf(object) === 'array' && firstPath >= object.length || object === undefined)) {
+                object = fill([...(object === undefined ? [] : object)], firstPath as number + 1, undefined); 
+            }
             return typeOf(object) === 'array'
                 ? [
                       ...object.slice(0, firstPath),
@@ -165,6 +178,7 @@ const set = (path: P | P[], value: any, object: any): any => {
         }
     }
 };
+
 const update = (path: P | P[], func: (value: any) => any, object: any) => set(path, func(get(path, object)), object);
 
 const remove = (path: P | P[], object: any) => {
